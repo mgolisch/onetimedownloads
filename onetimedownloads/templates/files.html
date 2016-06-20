@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block page_content %}
+<h1>Manage Files:</h2>
+<table class='table'>
+	<thead>
+		<tr>
+		<td>Name</td>
+		<td>Size</td>
+		<td>Codes</td>
+		</tr>
+	</thead>
+	<tbody>
+	{% for file in files %}
+	<tr>
+		<td>{{ file.filename }}</td>
+		<td>{{ file.size}}</td>
+		<td>{{ file.created }}</td>
+
+	</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+{% endblock %}
