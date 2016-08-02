@@ -1,0 +1,26 @@
+﻿{% extends 'layout.html' %}
+{% block page_content %}
+<h1>Manage Codes for file: {{file.filename}}</h1>
+<table class='table'>
+    <thead>
+        <tr>
+            <td>Code</td>
+            <td>Downloaded</td>
+            <td>Downloaded at</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for code in codes %}
+        <tr>
+            <td>{{ code.code }}</td>
+            <td>{{ code.downloaded}}</td>
+            <td>{{ code.downloaded_at }}</td>
+            <td><a href="{{ url_for('delete_code',codeid=code.id)}}">Delete</a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{url_for('add_code_for_file',fileid=file.id)}}">Add Code</a>
+{% endblock %}

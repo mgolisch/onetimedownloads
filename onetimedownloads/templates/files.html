@@ -1,23 +1,28 @@
 {% extends 'layout.html' %}
 {% block page_content %}
-<h1>Manage Files:</h2>
+<h1>Manage Files:</h1>
 <table class='table'>
 	<thead>
 		<tr>
 		<td>Name</td>
 		<td>Size</td>
-		<td>Codes</td>
+		<td>Created</td>
+        <td>Codes</td>
+        <td>Delete</td>
 		</tr>
 	</thead>
 	<tbody>
 	{% for file in files %}
 	<tr>
 		<td>{{ file.filename }}</td>
-		<td>{{ file.size}}</td>
-		<td>{{ file.created }}</td>
+		<td>{{ file.size/1024/1024}} MB</td>
+		<td>{{ file.created_at }}</td>
+        <td><a href="{{ url_for('manage_codes_for_file',fileid=file.id)}}">Manage Codes</a></td>
+        <td><a href="{{ url_for('delete_file',fileid=file.id)}}">Delete</a></td>
 
 	</tr>
 	{% endfor %}
 	</tbody>
 	</table>
+<a href="{{url_for('add_file')}}" >Add file</a>
 {% endblock %}

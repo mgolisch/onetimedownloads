@@ -1,0 +1,6 @@
+﻿{% extends 'layout.html' %}
+{% block page_content %}
+<h1>Information about code: {{code.code}}</h1>
+<p>This download code allows you to download File: {{code.file.filename}}</p>
+<a href="{{url_for('download_code',codeid=code.code)}}">Start Download</a>
+{% endblock %}

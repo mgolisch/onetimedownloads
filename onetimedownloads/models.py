@@ -1,4 +1,5 @@
 from onetimedownloads import db
+from uuid import uuid4
 
 
 class User(db.Model):
@@ -35,5 +36,7 @@ class Code(db.Model):
     userid = db.Column(db.Integer, db.ForeignKey('user.id'))
     fileid = db.Column(db.Integer, db.ForeignKey('file.id'))
 
+    def __init__(self):
+        self.code = str(uuid4())
     def __repr__(self):
         return '<Code|user: %s | name: %s >' % (self.user, self.file.filename)
