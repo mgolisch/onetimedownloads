@@ -141,7 +141,7 @@ def downloadform():
     form = DownloadForm()
     if form.validate_on_submit():
         downloadcode = form.code.data
-        return redirect(url_for('view_code',codeid=downloadcode))
+        return redirect(url_for('view_code',codeid=downloadcode.strip()))
     return render_template('downloadform.html',form=form)
 
 @app.route('/codes/<codeid>')
@@ -169,6 +169,7 @@ def download_code(codeid):
          return redirect(url_for('index'))
      code.downloaded = True
      code.downloaded_at = datetime.now()
+     code.ip = ip
      db.session.add(code)
      db.session.commit()
      return send_file(io.BytesIO(code.file.data),as_attachment=True,attachment_filename=code.file.filename)
