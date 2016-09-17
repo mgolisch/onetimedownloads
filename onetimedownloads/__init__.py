@@ -7,7 +7,7 @@ app = Flask(__name__, instance_relative_config=True)
 #load config
 app.config.from_object('config')
 #have instance config overwrite/change settings
-app.config.from_pyfile('config.py')
+app.config.from_pyfile('config.py',silent=True)
 
 db = SQLAlchemy(app)
 Bootstrap(app)

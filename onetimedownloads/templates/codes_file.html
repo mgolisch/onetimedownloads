@@ -13,7 +13,11 @@
     <tbody>
         {% for code in codes %}
         <tr>
+            {% if code.downloaded %}
+            <td><del>{{ code.code }}</del></td>
+            {% else %}
             <td>{{ code.code }}</td>
+            {%endif%}
             <td>{{ code.downloaded}}</td>
             <td>{{ code.downloaded_at }}</td>
             <td><a href="{{ url_for('delete_code',codeid=code.id)}}">Delete</a></td>
